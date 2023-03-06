@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GetUserController;
-use App\Http\Controllers\PostUserController;
+use App\Http\Controllers\PostingController;
 
 
 /*
@@ -48,7 +48,7 @@ Route::get('/', [GetUserController::class, 'index'])->name('Home-page');
 Route::get('/login', [GetUserController::class, 'login'])->name('login-page');
 Route::get('/register', [GetUserController::class, 'register'])->name('register-page');
 
-Route::post('/register', [PostUserController::class, 'create']);
+Route::post('/registerpro', [PostingController::class, 'store']);
 
 // Route::get('/', function () {
 //     return view('welcome');

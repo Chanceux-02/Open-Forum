@@ -5,10 +5,11 @@
 
         <h1 class="test">Register</h1>
 
-        <p class="mt-3">Already have an account? log in <a href="{{ route('login-page') }}">here!</a> </p> 
+        <p class="mt-3">Already have an account? log in <a href="{{ route('login-page') }}">here!</a> </p>
 
-        <form class="mt-5" method="POST" action="{{ url('/register') }}">
+        <form action="/registerpro" method="POST" class="mt-5">
             @csrf
+
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">First Name</label>
                 <input type="text" name="first_name" class="form-control" id="fname">
