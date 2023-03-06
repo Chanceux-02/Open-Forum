@@ -1,0 +1,18 @@
+
+*{
+    margin: 0%;
+    padding: 0%;
+}
+.profile-image-size{
+    width: 100px;
+    height: auto;
+}
+.mobile-profile-image-size{
+    width: 50px;
+    height: auto;
+}
+
+@media screen and (max-width: 768px) {
+    /* CSS styles go here */
+  }
+  
