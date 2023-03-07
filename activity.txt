@@ -4,3 +4,4 @@ ui/ux of home, login, register page
 partials
 function in controller
 making custom middleware to prevent back
+making custom middleware to prevent back
