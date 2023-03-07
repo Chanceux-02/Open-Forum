@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GetUserController;
-use App\Http\Controllers\PostingController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -44,11 +44,13 @@ use App\Http\Controllers\PostingController;
 // posts.destroy - URL: /posts/{post}, function: PostController@destroy
 
 //for showing the page
-Route::get('/', [GetUserController::class, 'index'])->name('Home-page');
-Route::get('/login', [GetUserController::class, 'login'])->name('login-page');
+Route::get('/home', [GetUserController::class, 'index'])->name('Home-page')->middleware(['auth', 'preventBackHistory']);
+Route::get('/', [GetUserController::class, 'login'])->name('login-page')->middleware(['guest','preventBackHistory']);
 Route::get('/register', [GetUserController::class, 'register'])->name('register-page');
 
-Route::post('/registerpro', [PostingController::class, 'store']);
+Route::post('/register', [UserController::class, 'create']);
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout']);
 
 // Route::get('/', function () {
 //     return view('welcome');

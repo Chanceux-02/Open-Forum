@@ -23,6 +23,12 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
+    protected $routeMiddleware = [
+        // ...
+        'preventBackHistory' => \App\Http\Middleware\PreventBackHistory::class,
+    ];
+
+
     /**
      * The application's route middleware groups.
      *

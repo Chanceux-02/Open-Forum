@@ -9,14 +9,20 @@ class GetUserController extends Controller
     //
 
     public function index(){
-        return view('index');
+
+        $title = 'Home Page';
+        return view('index')->with(['title' => $title]);
     }
 
     public function login(){
-        return view('auth.login');
+
+        $title = 'Login Page';
+        return view('auth.login')->with(['title' => $title]);
     }
 
     public function register(){
-        return view('auth.register');
+
+        $title = 'Register Page';
+        return view('auth.register')->with(['title' => $title]);
     }
 }

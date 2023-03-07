@@ -25,7 +25,12 @@
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                            <li>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
                             </ul>
                         </li>
                     </ul>
@@ -50,12 +55,12 @@
                     </div>
                     <div class="d-flex flex-column">
                         <div>
-                            <h4 class="d-flex"> 
+                            <h4 class="d-flex">
                                 <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
                                     <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
- 
+
                                 </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a> 
+                                <a href="http://" class="text-decoration-none">This is some heading</a>
                             </h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
                         </div>
@@ -77,12 +82,12 @@
                     </div>
                     <div class="d-flex flex-column">
                         <div>
-                            <h4 class="d-flex"> 
+                            <h4 class="d-flex">
                                 <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
                                     <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
- 
+
                                 </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a> 
+                                <a href="http://" class="text-decoration-none">This is some heading</a>
                             </h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
                         </div>
@@ -104,12 +109,12 @@
                     </div>
                     <div class="d-flex flex-column">
                         <div>
-                            <h4 class="d-flex"> 
+                            <h4 class="d-flex">
                                 <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
                                     <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
- 
+
                                 </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a> 
+                                <a href="http://" class="text-decoration-none">This is some heading</a>
                             </h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
                         </div>
@@ -131,12 +136,12 @@
                     </div>
                     <div class="d-flex flex-column">
                         <div>
-                            <h4 class="d-flex"> 
+                            <h4 class="d-flex">
                                 <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
                                     <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
- 
+
                                 </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a> 
+                                <a href="http://" class="text-decoration-none">This is some heading</a>
                             </h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
                         </div>
@@ -158,12 +163,12 @@
                     </div>
                     <div class="d-flex flex-column">
                         <div>
-                            <h4 class="d-flex"> 
+                            <h4 class="d-flex">
                                 <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
                                     <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
- 
+
                                 </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a> 
+                                <a href="http://" class="text-decoration-none">This is some heading</a>
                             </h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
                         </div>
@@ -185,12 +190,12 @@
                     </div>
                     <div class="d-flex flex-column">
                         <div>
-                            <h4 class="d-flex"> 
+                            <h4 class="d-flex">
                                 <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
                                     <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
- 
+
                                 </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a> 
+                                <a href="http://" class="text-decoration-none">This is some heading</a>
                             </h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
                         </div>
@@ -212,12 +217,12 @@
                     </div>
                     <div class="d-flex flex-column">
                         <div>
-                            <h4 class="d-flex"> 
+                            <h4 class="d-flex">
                                 <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
                                     <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
- 
+
                                 </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a> 
+                                <a href="http://" class="text-decoration-none">This is some heading</a>
                             </h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
                         </div>
@@ -239,12 +244,12 @@
                     </div>
                     <div class="d-flex flex-column">
                         <div>
-                            <h4 class="d-flex"> 
+                            <h4 class="d-flex">
                                 <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
                                     <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
- 
+
                                 </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a> 
+                                <a href="http://" class="text-decoration-none">This is some heading</a>
                             </h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
                         </div>
@@ -266,12 +271,12 @@
                     </div>
                     <div class="d-flex flex-column">
                         <div>
-                            <h4 class="d-flex"> 
+                            <h4 class="d-flex">
                                 <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
                                     <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
- 
+
                                 </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a> 
+                                <a href="http://" class="text-decoration-none">This is some heading</a>
                             </h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
                         </div>
@@ -288,5 +293,5 @@
         </section>
 
     </div>
-    
+
     @include('partials._footer')

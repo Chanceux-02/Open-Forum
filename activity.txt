@@ -1,0 +1,6 @@
+set up routes
+create controller, model that match your db table
+ui/ux of home, login, register page
+partials
+function in controller
+making custom middleware to prevent back
