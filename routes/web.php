@@ -47,6 +47,7 @@ use App\Http\Controllers\UserController;
 Route::get('/home', [GetUserController::class, 'index'])->name('Home-page')->middleware(['auth', 'preventBackHistory']);
 Route::get('/', [GetUserController::class, 'login'])->name('login-page')->middleware(['guest','preventBackHistory']);
 Route::get('/register', [GetUserController::class, 'register'])->name('register-page');
+Route::get('/add/post', [GetUserController::class, 'createPost'])->name('create-post')->middleware('auth');
 
 Route::post('/register', [UserController::class, 'create']);
 Route::post('/login', [UserController::class, 'login']);

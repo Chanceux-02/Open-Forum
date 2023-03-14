@@ -25,4 +25,10 @@ class GetUserController extends Controller
         $title = 'Register Page';
         return view('auth.register')->with(['title' => $title]);
     }
+
+    public function createPost(){
+
+        $title = 'Create Post';
+        return view('pages.createPost')->with(['title' => $title]);
+    }
 }
