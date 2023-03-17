@@ -49,6 +49,7 @@ Route::get('/home', [GetUserController::class, 'index'])->name('Home-page')->mid
 Route::get('/', [GetUserController::class, 'login'])->name('login-page')->middleware(['guest', 'preventBackHistory']);
 Route::get('/register', [GetUserController::class, 'register'])->name('register-page');
 Route::get('/add/post', [GetUserController::class, 'createPost'])->name('create-post');
+Route::get('/user/profile{id}', [GetUserController::class, 'profile'])->name('user-profile');
 
 // Route::get('/test', [PostController::class, 'show']);
 

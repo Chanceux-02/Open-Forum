@@ -75,4 +75,10 @@ class GetUserController extends Controller
         $title = 'Create Post';
         return view('pages.createPost')->with(['title' => $title]);
     }
+
+    public function profile(){
+
+        $title = 'User Profile';
+        return view('pages.userProfile')->with(['title' => $title]);
+    }
 }
