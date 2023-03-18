@@ -14,8 +14,6 @@
 
         <section class="container mt-5">
             @foreach($data as $datas)
-                {{-- @foreach($user as $users) --}}
-                {{-- <li>{{ $user->name }}</li> --}}
                     <section class="border-bottom mt-5 d-flex flex-column">
                         <div class="d-flex ">
                             <div class="px-3 pb-3  justify-content-center align-items-center text-center d-none d-md-flex  flex-column">
@@ -46,7 +44,6 @@
                             <p class="text-warning px-2">Comment</p>
                         </div>
                     </section>
-                {{-- @endforeach --}}
             @endforeach
 
             <section class="border-bottom mt-5 d-flex flex-column">
