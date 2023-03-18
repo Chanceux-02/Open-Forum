@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GetUserController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 
 
@@ -45,13 +46,16 @@ use App\Http\Controllers\UserController;
 
 //for showing the page
 Route::get('/home', [GetUserController::class, 'index'])->name('Home-page')->middleware(['auth', 'preventBackHistory']);
-Route::get('/', [GetUserController::class, 'login'])->name('login-page')->middleware(['guest','preventBackHistory']);
+Route::get('/', [GetUserController::class, 'login'])->name('login-page')->middleware(['guest', 'preventBackHistory']);
 Route::get('/register', [GetUserController::class, 'register'])->name('register-page');
+Route::get('/add/post', [GetUserController::class, 'createPost'])->name('create-post');
+Route::get('/user/profile{id}', [GetUserController::class, 'profile'])->name('user-profile');
+
+// Route::get('/test', [PostController::class, 'show']);
 
 Route::post('/register', [UserController::class, 'create']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/upload/post', [PostController::class, 'store']);
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+

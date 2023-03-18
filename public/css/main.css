@@ -5,14 +5,25 @@
 }
 .profile-image-size{
     width: 100px;
-    height: auto;
+    height: 100px;
+    background-size: cover;
 }
 .mobile-profile-image-size{
     width: 50px;
+    height: 50px;
+    background-size: cover;
+}
+.post-image-size{
+    width: 80%;
+    border-radius: 10px;
     height: auto;
 }
-
-@media screen and (max-width: 768px) {
-    /* CSS styles go here */
+.mxwidth{
+    max-width: 900px !important;
+}
+@media screen and (max-width: 600px) {
+    .mxwidth{
+        max-width: 500px !important;
+    }
   }
   

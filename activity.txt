@@ -5,3 +5,11 @@ partials
 function in controller
 making custom middleware to prevent back
 making custom middleware to prevent back
+adding a feature to create post
+fetching data in index.php
+fetching data from post and users
+
+//;
+tapos na ang create and read
+
+mahimo update and delete 

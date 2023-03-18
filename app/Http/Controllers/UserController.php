@@ -28,13 +28,27 @@ class UserController extends Controller
         }
 
         $user = new User();
+        // dd($request);
+        $file = $request->hasFile('profilePic');
+       
+        if($file){
 
-        $user->first_name = $request->input('first_name');
-        $user->last_name = $request->input('last_name');
-        $user->email = $request->input('email');
-        $user->password = bcrypt( $request->input('password') );
+            $profilePic = $request->file('profilePic');
+            $profileN = $request->input('last_name');
+            $picName = $profilePic->hashName();
+            $newPicName = 'user-' . $profileN . '-' . $picName;
+            $profilePic->storeAs('public/user/profile-pics', $newPicName);
 
-        $user->save();
+            $user->first_name = $request->input('first_name');
+            $user->last_name = $request->input('last_name');
+            $user->profile_pic = $newPicName;
+            $user->email = $request->input('email');
+            $user->password = bcrypt( $request->input('password') );
+    
+            // dd($user);
+            $user->save();
+        }
+        
 
         return redirect('/')->with('message', 'Register successful!');
     }

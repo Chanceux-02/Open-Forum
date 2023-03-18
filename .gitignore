@@ -18,6 +18,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+<<<<<<< HEAD
 =======
 # Logs
 logs
@@ -124,3 +125,7 @@ dist
 # TernJS port file
 .tern-port
 >>>>>>> 800a5b000dac735adab925fa6140b5e641d9650e
+=======
+/vendor
+
+>>>>>>> f00b0498eab70d71560914b20a8a3c939a538d8d
