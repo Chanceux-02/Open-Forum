@@ -1,0 +1,84 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: rgb(224, 223, 221) !important;
+}
+.profile-image-size{
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+}
+.mobile-profile-image-size{
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+}
+.profile-name{
+    font-size: 0.7rem;
+}
+.post-image-size{
+    width: 80%;
+    border-radius: 10px;
+    height: auto;
+}
+
+.mxwidth{
+    max-width: 900px !important;
+}
+.helpful{
+    color: #505358;
+}
+.helpful2{
+    color: #7d1eaa;
+}
+.comment-padding{
+    padding: 5% 10%;
+}
+@media screen and (max-width: 600px) {
+    .mxwidth{
+        max-width: 500px !important;
+    }
+    .profile{
+        display: flex ;
+        flex-direction: column;
+    }
+    .bio{
+        padding: 5px;
+    }
+    .custom-padding{
+        padding: 5%;
+    }
+    .nf-padding{
+        padding: 5%;
+    }
+    .comment-padding{
+        padding: 5%;
+    }
+    .sigle-post-mobile{
+        padding: 0%;
+    }
+    .sigle-post-mobile img{
+        margin-right: 3px;
+    }
+    .sigle-post-mobile p{
+       font-size: 0.5rem;
+    }
+  }
+@media screen and (min-width: 600px) {
+    .profileContainer{
+        width: 30%;
+    }
+    .bio{
+        padding: 5%;
+    }
+    .custom-padding{
+        padding: 1% 10% 10% 10%;
+    }
+    .nf-padding{
+        padding: 5% 10% 2% 10%;
+    }
+}
+  
