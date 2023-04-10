@@ -85,7 +85,7 @@
                 </section>
             </div>
         </section>
-        
+          
 </div>
 <script>
     let likedd = {!! json_encode($liked) !!};
