@@ -10,6 +10,7 @@ fetching data in index.php
 fetching data from post and users
 
 //;
-tapos na ang create and read
+tapos na ang create and read kag fetch data sa profile sang user
+tapos na ang delete post dala ang image kag mag redirect
 
-mahimo update and delete 
+mahimo update sang post

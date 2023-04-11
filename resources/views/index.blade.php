@@ -1,4 +1,4 @@
-@include('partials._header');
+@include('partials._header')
 
     @if (session('message'))
         <div class="alert alert-success">
@@ -6,264 +6,72 @@
         </div>
     @endif
 
-    <h1 class="text-black-50 text-center mt-5">Open Forum</h1>
+    <div class="text-black-50 text-center bg-white p-5 contaier">
+        <h1>Open Forum</h1>
+    </div>
 
     <x-nav/>
 
-    <div class="container d-flex justify-content-center flex-column mxwidth">
+    <div class="container d-flex justify-content-center flex-column custom-padding mxwidth">
 
-        <section class="container mt-5">
-            @foreach($data as $datas)
-                    <section class="border-bottom mt-5 d-flex flex-column">
+        <section class="container">
+            @foreach($info as $datas)
+
+                    <section class="border-bottom mt-2 d-flex flex-column bg-white rounded nf-padding shadow-sm">
                         <div class="d-flex ">
                             <div class="px-3 pb-3  justify-content-center align-items-center text-center d-none d-md-flex  flex-column">
                                 <img src="{{ Storage::url('user/profile-pics/'.$datas->profile_pic)}}" alt=":)" class="profile-image-size rounded-circle">
-                                <p class="pt-1">{{$datas->first_name .' '. $datas->last_name}}</p>
+                                <p class="pt-1 profile-name">{{$datas->first_name .' '. $datas->last_name}}</p>
                             </div>
                             <div class="d-flex flex-column">
-                                <div>
-                                    <div class="d-flex align-items-center" >
-                                        <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3 flex-column">
+                                <div class="px-3">
+                                    <div class="d-flex align-items-start flex-column pb-2" >
+                                        <div  class="d-flex justify-content-center align-items-center d-block d-md-none pe-3 pb-2">
                                             <img src="{{ Storage::url('user/profile-pics/'.$datas->profile_pic)}}" alt=":)" class="mobile-profile-image-size rounded-circle">
-                                            <p class="pt-1">{{$datas->first_name .' '. $datas->last_name}}</p>
+                                            <p class="pt-1 ps-2 profile-name">{{$datas->first_name .' '. $datas->last_name}}</p>
                                         </div>
-                                        <h1><a href="http://" class="text-decoration-none">{{$datas->post_title}}</a></h1>
+                                        <h3><a href="http://" class="text-decoration-none">{{$datas->post_title}}</a></h3>
                                     </div>
                                     <p>{{$datas->post_content}}</p>
                                 </div>
                             </div>
                         </div>
-
+                        <hr>
                         <div class="d-flex justify-content-center align-items-center">
                             <img src="{{ Storage::url('post/images/'.$datas->image_name)}}" alt=":)" class="post-image-size">
                         </div>
 
-                        <div class="d-flex justify-content-end py-2">
-                            <p class="text-black-50 fw-light px-2">3k likes</p>
-                            <p class="text-warning px-2">Like</p>
-                            <p class="text-warning px-2">Comment</p>
+                        <div class="d-flex justify-content-end mt-5">
+                            <p class="text-black-50 fw-light px-2 like-count2-{{$datas->post_id}}" id="like-count2-{{$datas->post_id}}"></p>
+                            
+                            @foreach($like as $likes)
+                                @if($likes->post_id == $datas->post_id)
+                                    <p class="text-black-50 fw-light px-2 like-count-1" id="like-count-a{{$datas->post_id}}"> {{$likes->likes_count}} </p>
+                                @endif
+                            @endforeach                 
+                            <form action="{{'/like/post'}}" method="POST" class="like-form me-3">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$datas->post_id}}">
+                                <button type="submit" class="prevent" style="background-color: transparent; border: none;">
+                                    <i class="fa-solid fa-hand-holding-medical fa-lg helpful" id="helpful2a-{{$datas->post_id}}"></i>
+                                </button>
+                            </form>     
+                           {{-- sa comment na ni --}}
+                            {{-- islan answers --}}
+                            <p class="text-black-50 fw-light px-2"> 5 </p>
+                            <a href="{{route('comment-post',['id' => $datas->post_id])}}" class="text-muted" style="text-decoration: none;">Answers</a>       
+                            {{-- <button type="submit" class="text-muted" style="background-color: transparent; border: none;">Answers</button>   --}}
                         </div>
                     </section>
             @endforeach
-
-            <section class="border-bottom mt-5 d-flex flex-column">
-                <div class="d-flex ">
-                    <div class="px-3 pb-3  justify-content-center align-items-center text-center d-none d-md-flex">
-                        <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="profile-image-size">
-
-                    </div>
-                    <div class="d-flex flex-column">
-                        <div>
-                            <h4 class="d-flex">
-                                <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
-                                    <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
-
-                                </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end py-2">
-                    <p class="text-black-50 fw-light px-2">3k likes</p>
-                    <p class="text-warning px-2">Like</p>
-                    <p class="text-warning px-2">Comment</p>
-                </div>
-            </section>
-
-            <section class="border-bottom mt-5 d-flex flex-column">
-                <div class="d-flex ">
-                    <div class="px-3 pb-3  justify-content-center align-items-center text-center d-none d-md-flex">
-                        <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="profile-image-size">
-
-                    </div>
-                    <div class="d-flex flex-column">
-                        <div>
-                            <h4 class="d-flex">
-                                <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
-                                    <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
-
-                                </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end py-2">
-                    <p class="text-black-50 fw-light px-2">3k likes</p>
-                    <p class="text-warning px-2">Like</p>
-                    <p class="text-warning px-2">Comment</p>
-                </div>
-            </section>
-
-            <section class="border-bottom mt-5 d-flex flex-column">
-                <div class="d-flex ">
-                    <div class="px-3 pb-3  justify-content-center align-items-center text-center d-none d-md-flex">
-                        <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="profile-image-size">
-
-                    </div>
-                    <div class="d-flex flex-column">
-                        <div>
-                            <h4 class="d-flex">
-                                <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
-                                    <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
-
-                                </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end py-2">
-                    <p class="text-black-50 fw-light px-2">3k likes</p>
-                    <p class="text-warning px-2">Like</p>
-                    <p class="text-warning px-2">Comment</p>
-                </div>
-            </section>
-
-            <section class="border-bottom mt-5 d-flex flex-column">
-                <div class="d-flex ">
-                    <div class="px-3 pb-3  justify-content-center align-items-center text-center d-none d-md-flex">
-                        <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="profile-image-size">
-
-                    </div>
-                    <div class="d-flex flex-column">
-                        <div>
-                            <h4 class="d-flex">
-                                <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
-                                    <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
-
-                                </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end py-2">
-                    <p class="text-black-50 fw-light px-2">3k likes</p>
-                    <p class="text-warning px-2">Like</p>
-                    <p class="text-warning px-2">Comment</p>
-                </div>
-            </section>
-
-            <section class="border-bottom mt-5 d-flex flex-column">
-                <div class="d-flex ">
-                    <div class="px-3 pb-3  justify-content-center align-items-center text-center d-none d-md-flex">
-                        <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="profile-image-size">
-
-                    </div>
-                    <div class="d-flex flex-column">
-                        <div>
-                            <h4 class="d-flex">
-                                <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
-                                    <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
-
-                                </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end py-2">
-                    <p class="text-black-50 fw-light px-2">3k likes</p>
-                    <p class="text-warning px-2">Like</p>
-                    <p class="text-warning px-2">Comment</p>
-                </div>
-            </section>
-
-            <section class="border-bottom mt-5 d-flex flex-column">
-                <div class="d-flex ">
-                    <div class="px-3 pb-3  justify-content-center align-items-center text-center d-none d-md-flex">
-                        <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="profile-image-size">
-
-                    </div>
-                    <div class="d-flex flex-column">
-                        <div>
-                            <h4 class="d-flex">
-                                <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
-                                    <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
-
-                                </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end py-2">
-                    <p class="text-black-50 fw-light px-2">3k likes</p>
-                    <p class="text-warning px-2">Like</p>
-                    <p class="text-warning px-2">Comment</p>
-                </div>
-            </section>
-
-            <section class="border-bottom mt-5 d-flex flex-column">
-                <div class="d-flex ">
-                    <div class="px-3 pb-3  justify-content-center align-items-center text-center d-none d-md-flex">
-                        <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="profile-image-size">
-
-                    </div>
-                    <div class="d-flex flex-column">
-                        <div>
-                            <h4 class="d-flex">
-                                <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
-                                    <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
-
-                                </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end py-2">
-                    <p class="text-black-50 fw-light px-2">3k likes</p>
-                    <p class="text-warning px-2">Like</p>
-                    <p class="text-warning px-2">Comment</p>
-                </div>
-            </section>
-
-            <section class="border-bottom mt-5 d-flex flex-column">
-                <div class="d-flex ">
-                    <div class="px-3 pb-3  justify-content-center align-items-center text-center d-none d-md-flex">
-                        <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="profile-image-size">
-
-                    </div>
-                    <div class="d-flex flex-column">
-                        <div>
-                            <h4 class="d-flex">
-                                <div  class="d-flex justify-content-center align-items-center text-center d-block d-md-none pe-3">
-                                    <img src="{{ asset('img/user/profile-default.png') }}" alt=":)" class="mobile-profile-image-size">
-
-                                </div>
-                                <a href="http://" class="text-decoration-none">This is some heading</a>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor magni praesentium similique officia quibusdam excepturi quo minima esse, quisquam in at expedita quasi. Enim cumque quas at, tempora illo obcaecati.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end py-2">
-                    <p class="text-black-50 fw-light px-2">3k likes</p>
-                    <p class="text-warning px-2">Like</p>
-                    <p class="text-warning px-2">Comment</p>
-                </div>
-            </section>
-
-        </section>
-
     </div>
-
-    @include('partials._footer');
+    <script>
+        let likedd = {!! json_encode($liked) !!};
+        likedd.forEach(function(item) {
+            let postid = item.liked_id;
+            let testing = '#helpful2a-' + postid;
+            $(testing).removeClass('helpful');
+            $(testing).addClass('helpful2');
+        });
+    </script>
+    @include('partials._footer')

@@ -49,13 +49,18 @@ Route::get('/home', [GetUserController::class, 'index'])->name('Home-page')->mid
 Route::get('/', [GetUserController::class, 'login'])->name('login-page')->middleware(['guest', 'preventBackHistory']);
 Route::get('/register', [GetUserController::class, 'register'])->name('register-page');
 Route::get('/add/post', [GetUserController::class, 'createPost'])->name('create-post');
-Route::get('/user/profile{id}', [GetUserController::class, 'profile'])->name('user-profile');
-
-// Route::get('/test', [PostController::class, 'show']);
+Route::get('/user/profile', [GetUserController::class, 'profile'])->name('user-profile');
+Route::get('/edit/profile', [GetUserController::class, 'edit'])->name('edit-profile');
+Route::get('/edit/post/{id}', [GetUserController::class, 'editPost'])->name('edit-post');
+Route::get('/delete/post/{id}', [GetUserController::class, 'destroy'])->name('delete-post');
+Route::get('/show/comment/{id}', [GetUserController::class, 'comment'])->name('comment-post');
 
 Route::post('/register', [UserController::class, 'create']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/upload/post', [PostController::class, 'store']);
-
+Route::post('/upload/comment/{id}', [PostController::class, 'storeComment'])->name('answer-post');
+Route::put('/update/profile', [UserController::class, 'update']);
+Route::put('/update/post/{id}', [PostController::class, 'updatePost'])->name('update-post');
+Route::post('/like/post', [PostController::class, 'like']);
 

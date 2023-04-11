@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post', function (Blueprint $table) {
-            $table->id('post_id');
-            $table->string('post_title');   
-            $table->string('post_content');
-            $table->string('image_name')->nullable();
+        Schema::create('likes', function (Blueprint $table) {
+            $table->id('like_id');
+            $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
-            $table->dateTime('post_created')->default(now());
+            $table->foreign('post_id')->references('post_id')->on('post')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Models;
+use App\Models\Post;
+use App\Models\Like;
+
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,6 +16,13 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $primaryKey = 'user_id';
+
+    public function post(){
+        return $this->hasMany(Post::class, 'user_id', 'user_id');
+    }
+    public function like(){
+        return $this->hasMany(Like::class, 'user_id', 'user_id');
+    }
 
     /**
      * The attributes that are mass assignable.
