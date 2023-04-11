@@ -63,4 +63,5 @@ Route::post('/upload/comment/{id}', [PostController::class, 'storeComment'])->na
 Route::put('/update/profile', [UserController::class, 'update']);
 Route::put('/update/post/{id}', [PostController::class, 'updatePost'])->name('update-post');
 Route::post('/like/post', [PostController::class, 'like']);
+Route::post('/like/comment', [PostController::class, 'likeComment'])->name('like-comment');
 

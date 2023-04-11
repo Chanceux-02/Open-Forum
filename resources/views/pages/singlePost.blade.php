@@ -58,17 +58,22 @@
             <div class="px-3 pb-3 d-flex flex-column sigle-post-mobile">
                 @foreach ($comment as $comments)
                     <div class="d-flex">
-                        <img src="{{ Storage::url('user/profile-pics/'.$datas->profile_pic)}}" alt=":)" class="profile-image-size rounded-circle">
+                        <img src="{{ Storage::url('user/profile-pics/'.$comments->profile_pic)}}" alt=":)" class="profile-image-size rounded-circle me-3">
                         <p>{{$comments->content}}</p>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <p class="text-black-50 fw-light px-2 like-count2-{{$datas->post_id}}" id="like-count2-{{$datas->post_id}}"></p>
-                        <p class="text-black-50 fw-light px-2 like-count-1" id="like-count-a{{$datas->post_id}}"> {{$likes->likes_count}} voted</p>
-                        <form action="" method="POST" class="me-3">
+                        <p class="text-black-50 fw-light px-2 vote-count2-{{$comments->comment_id}}" id="vote-count2-{{$comments->comment_id}}">{{$voted}}</p>
+
+                            @if($comments->comment_id == $comments->comment_id)
+                                <p class="text-black-50 fw-light px-2 vote-count-1" id="vote-count-a{{$comments->comment_id}}"> </p>
+                            @endif
+
+                        <form action="{{ route('like-comment') }}" method="POST" class="vote-form me-3">
                             @csrf
-                            <input type="hidden" name="id" value="{{$datas->post_id}}">
-                            <button type="submit"  style="background-color: transparent; border: none;">
-                                <i class="fa-solid fa-circle-arrow-up fa-lg helpful" id="helpful2a-{{$datas->post_id}}"></i>
+                            <input type="hidden" name="postId" value="{{$datas->post_id}}">
+                            <input type="hidden" name="comId" value="{{$comments->comment_id}}">
+                            <button type="submit" class="voteBtn" style="background-color: transparent; border: none;">
+                                <i class="fa-solid fa-circle-arrow-up fa-lg helpful" id="vote2a-{{$comments->comment_id}}"></i>
                             </button>
                         </form>
                     </div>
@@ -95,6 +100,16 @@
         $(testing).removeClass('helpful');
         $(testing).addClass('helpful2');
     });
+
+    // let voted = {!! json_encode($voted) !!};
+    // voted.forEach(function(item) {
+    //     let voteId = item.voted_id;
+    //     let clss = '#helpful2a-' + voteId;
+    //     $(clss).removeClass('helpful');
+    //     $(clss).addClass('helpful2');
+    // });
+
+     
 </script>
 @include('partials._footer')
 

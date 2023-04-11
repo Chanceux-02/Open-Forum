@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Like;
 use App\Models\Comment;
+use App\Models\Comment_vote;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -118,5 +119,32 @@ class PostController extends Controller
         $comment->save();
         return redirect('/show/comment/'. $id)->with('message', 'Post Created Successfuly!');
     }
+    public function likeComment(Request $request){
+        
+        $postID = $request->input('postId');
+        $user_id = auth()->id();
+        $commentID = $request->input('comId');
+        
+        $comment_vote = DB::table('comment_vote')
+        ->WHERE('user_id', $user_id)
+        ->WHERE('post_id', $postID)
+        ->WHERE('comment_id', $commentID)
+        ->first();
+        if(!$comment_vote){
+            $comment_vote = new Comment_vote();
+            $comment_vote->user_id = $user_id;
+            $comment_vote->post_id = $postID;
+            $comment_vote->comment_id = $commentID;
+            $comment_vote->save();
+        }else{
+            DB::table('comment_vote')->where('user_id', $user_id)->where('post_id', $postID)
+            ->where('comment_id', $commentID)->delete();
+            $comment_votes_count = Comment_vote::where('comment_id', $commentID)->count();
+            return response()->json(['success' => true, 'comment_count' => $comment_votes_count]);
+        }
 
+        // return redirect('/home')->with('message', 'liked!');
+        $comment_votes_count = Comment_vote::where('comment_id', $postID)->count();
+        return response()->json(['success' => true, 'comment_count' => $comment_votes_count]);
+    }
 }

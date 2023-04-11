@@ -152,13 +152,21 @@ class GetUserController extends Controller
 
       $user = auth()->id();
       $liked =  DB::table('likes')->select('post_id as liked_id')->where('user_id', $user)->get();
+      $voted =  DB::table('comment_vote')->select('comment_id as com_id')->where('user_id', $user)->get();
 
-      $comment = DB::table('comments')->get();
+      // $comment = DB::table('comments')->get();
+      $comment = DB::table('users')
+      ->join('comments','users.user_id', '=', 'comments.user_id')
+      ->select('users.*', 'comments.*')
+      ->get();
+
+      // dd($comment);
 
       $datas = [
         'info' => $datas,
         'like' => $likes,
         'liked' => $liked,
+        'voted' => $voted,
         'comment' => $comment
       ];
 
