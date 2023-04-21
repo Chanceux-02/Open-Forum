@@ -62,7 +62,7 @@
                         <p>{{$comments->content}}</p>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <p class="text-black-50 fw-light px-2 comment-count2 comment-count2-{{$comments->comment_id}}">hey</p>
+                        <p class="text-black-50 fw-light px-2 comment-count2 comment-count2-{{$comments->comment_id}}"></p>
                             @foreach($votes as $vote)
                                 @if($vote->comment_id === $comments->comment_id) 
                                     <p class="text-black-50 fw-light px-2 comment-count-1 comment-count-{{$vote->comment_id}}"> {{$vote->vote}} </p>

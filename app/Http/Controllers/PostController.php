@@ -145,7 +145,7 @@ class PostController extends Controller
         }
 
         // return redirect('/home')->with('message', 'liked!');
-        $comment_votes_count = Comment_vote::where('comment_id', $postID)->count();
+        $comment_votes_count = Comment_vote::where('comment_id', $commentID)->count();
         return response()->json(['success' => true, 'comment_count' => $comment_votes_count]);
     }
 }

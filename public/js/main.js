@@ -42,49 +42,43 @@
 
         //para sa comment vote
 
-        // $('.comment-count-1').show();
-        // $("[class^='comment-count2-']");
-        
-        // let voteBtn = $('.voteBtn');
+        $('.comment-count-1').show();
+        $("[class^='comment-count2-']");
+        let voteBtn = $('.voteBtn');
 
-        // voteBtn.each(function(){
-        //     $(this).on('click', function(event) {event.preventDefault();
-        //         // var comID = form.find('input[name="comId"]').val();
-        //         let form =  $(this).closest('form');
-        //         var comID = form.find('input[name="comId"]').val();
-        //         let data = form.serialize();
-        //         let url = form.attr('action');
-        //         let this_ = $(this).find('i');
-        //         // console.log(data);
+        voteBtn.each(function(){
+            $(this).on('click', function(event) {event.preventDefault();
+                let form =  $(this).closest('form');
+                var comID = form.find('input[name="comId"]').val();
+                let data = form.serialize();
+                let url = form.attr('action');
+                let this_ = $(this).find('i');
                 
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: url,
-        //             data: data,
-        //             success: function(response) {
-        //                 if (response.success) {
-        //                     $("[class^='comment-count-']").show();
-        //                     let votecountEl = $('.comment-count-' + comID);
-        //                     // console.log(likesCountElement);
-        //                     votecountEl.text(response.likes_count);
-        //                     console.log(votecountEl);
-        //                     // console.log(likesCountElement);
-        //                     // let checkingCss = '#vote2a-'+ comID;
-        //                     let checkingCss2 = $(this_).hasClass('helpful');
-        //                     if(checkingCss2){
-        //                         $(this_).toggleClass('helpful2');
-        //                     }else{
-        //                         $(this_).removeClass('helpful2');
-        //                         $(this_).addClass('helpful');
-        //                     }
-        //                     console.log('success');
-        //                 } else {
-        //                     console.log('not success');
-        //                 }
-        //             }
-        //         });
-        //     });
-        // });
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: data,
+                    success: function(response) {
+                        if (response.success) {
+                            $("[class^='comment-count-']").show();
+                            let votecountEl = $('.comment-count-' + comID);
+                            votecountEl.text(response.comment_count);
+                            console.log(votecountEl);
+                            let checkingCss = $(this_).hasClass('helpful');
+                            if(checkingCss){
+                                $(this_).toggleClass('helpful2');
+                            }else{
+                                $(this_).removeClass('helpful2');
+                                $(this_).addClass('helpful');
+                            }
+                            console.log('success');
+                        } else {
+                            console.log('not success');
+                        }
+                    }
+                });
+            });
+        });
         
 
     });
