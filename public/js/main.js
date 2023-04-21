@@ -4,12 +4,11 @@
         $('.like-count-1').show();
         $("[class^='like-count2-']").hide();
 
-        $('.like-form').each(function() {
+        $('.prevent').each(function() {
             
-            let form = $(this);
-        
-            $('.prevent').on('click', function(event) {event.preventDefault();
+            $(this).on('click', function(event) {event.preventDefault();
                 
+                let form = $(this).closest('form');
                 var url = form.attr('action');
                 var data = form.serialize();
                 var postID = form.find('input[name="id"]').val();
@@ -20,10 +19,11 @@
                     data: data,
                     success: function(response) {
                         if (response.success) {
-                            let uniquePost = $('#like-count-a' + postID).remove();
                             $("[class^='like-count2-']").show();
-                            let likesCountElement = $('.like-count2-' + postID);
-                            likesCountElement.text(response.likes_count);
+                            let uniquePost = $('#like-count-a' + postID);
+                            uniquePost.text(response.likes_count);
+                            // let likesCountElement = $('.like-count2-' + postID);
+                            // likesCountElement.text(response.likes_count);
                             let checkingCss = '#helpful2a-'+ postID;
                             let checkingCss2 = $(checkingCss).hasClass('helpful');
                             if(checkingCss2){
@@ -42,35 +42,49 @@
 
         //para sa comment vote
 
-        $('.vote-count-1').show();
-        $("[class^='vote-count2-']").hide();
-        let form = $('.vote-form');
-        $('.voteBtn').on('click', function(event) {event.preventDefault();
-            var url = form.attr('action');
-            var data = form.serialize();
-            var comID = form.find('input[name="comId"]').val();
-            // console.log(comID);
-            
-            $.ajax({
-                type: 'POST',
-                url: url,
-                data: data,
-                success: function(response) {
-                    if (response.success) {
-                        let checkingCss = '#vote2a-'+ comID;
-                        let checkingCss2 = $(checkingCss).hasClass('helpful');
-                        if(checkingCss2){
-                            $(checkingCss).toggleClass('helpful2');
-                        }else{
-                            $(checkingCss).removeClass('helpful2');
-                            $(checkingCss).addClass('helpful');
-                        }
-                        console.log('success');
-                    } else {
-                        console.log('not success');
-                    }
-                }
-            });
-        });
+        // $('.comment-count-1').show();
+        // $("[class^='comment-count2-']");
+        
+        // let voteBtn = $('.voteBtn');
+
+        // voteBtn.each(function(){
+        //     $(this).on('click', function(event) {event.preventDefault();
+        //         // var comID = form.find('input[name="comId"]').val();
+        //         let form =  $(this).closest('form');
+        //         var comID = form.find('input[name="comId"]').val();
+        //         let data = form.serialize();
+        //         let url = form.attr('action');
+        //         let this_ = $(this).find('i');
+        //         // console.log(data);
+                
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: url,
+        //             data: data,
+        //             success: function(response) {
+        //                 if (response.success) {
+        //                     $("[class^='comment-count-']").show();
+        //                     let votecountEl = $('.comment-count-' + comID);
+        //                     // console.log(likesCountElement);
+        //                     votecountEl.text(response.likes_count);
+        //                     console.log(votecountEl);
+        //                     // console.log(likesCountElement);
+        //                     // let checkingCss = '#vote2a-'+ comID;
+        //                     let checkingCss2 = $(this_).hasClass('helpful');
+        //                     if(checkingCss2){
+        //                         $(this_).toggleClass('helpful2');
+        //                     }else{
+        //                         $(this_).removeClass('helpful2');
+        //                         $(this_).addClass('helpful');
+        //                     }
+        //                     console.log('success');
+        //                 } else {
+        //                     console.log('not success');
+        //                 }
+        //             }
+        //         });
+        //     });
+        // });
+        
 
     });

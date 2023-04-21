@@ -124,6 +124,7 @@ class PostController extends Controller
         $postID = $request->input('postId');
         $user_id = auth()->id();
         $commentID = $request->input('comId');
+        // dd($commentID);
         
         $comment_vote = DB::table('comment_vote')
         ->WHERE('user_id', $user_id)

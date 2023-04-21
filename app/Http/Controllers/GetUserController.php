@@ -150,9 +150,30 @@ class GetUserController extends Controller
       ->select('post.*', DB::raw('COUNT(likes.like_id) AS likes_count'))
       ->get();
 
+      // $votes = DB::table('comments')
+      // ->leftJoin('comment_vote', 'comment_vote.comment_id', '=', 'comments.comment_id')
+      // ->groupBy( 'comments.post_id', 'comments.user_id', 'comments.content', 'comments.comment_id', 'comments.updated_at', 'comments.created_at',
+      //   'comment_vote.post_id' ,'comment_vote.comment_id', 'comment_vote.vote_id', 'comment_vote.user_id', 'comment_vote.updated_at', 'comment_vote.created_at')
+      // ->select('comments.*', DB::raw('COUNT(comment_vote.vote_id) AS com_count'))
+      // ->get();
+
+      $votes = DB::table('comments')
+      ->leftJoin('comment_vote', 'comments.comment_id', '=', 'comment_vote.comment_id')
+      ->select('comments.comment_id', DB::raw('count(comment_vote.vote_id) as vote'))
+      ->groupBy('comments.comment_id')
+      ->get();
+
+
+
+      // foreach ($votes as $test) {
+      //     print_r($test);
+      // }
+
+      // return;
+
       $user = auth()->id();
       $liked =  DB::table('likes')->select('post_id as liked_id')->where('user_id', $user)->get();
-      $voted =  DB::table('comment_vote')->select('comment_id as com_id')->where('user_id', $user)->get();
+      // $voted =  DB::table('comment_vote')->select('comment_id as com_id')->where('user_id', $user)->get();
 
       // $comment = DB::table('comments')->get();
       $comment = DB::table('users')
@@ -166,7 +187,7 @@ class GetUserController extends Controller
         'info' => $datas,
         'like' => $likes,
         'liked' => $liked,
-        'voted' => $voted,
+        'votes' => $votes,
         'comment' => $comment
       ];
 
