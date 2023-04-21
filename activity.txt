@@ -12,5 +12,13 @@ fetching data from post and users
 //;
 tapos na ang create and read kag fetch data sa profile sang user
 tapos na ang delete post dala ang image kag mag redirect
+tapos na ang mag like kag mag comment
+tapos na mahimo update sang post
 
-mahimo update sang post
+mahimo delete function sa comment
+mahimo edit comment function
+ang ma edit lang nga comment is ang nag comment man nga user
+ang display sa post nga comment kay adon kay naka placehodler palang
+
+improve ui
+seed the post, comments and likes in database
