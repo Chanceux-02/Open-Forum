@@ -1,0 +1,22 @@
+git checkout main.
+Use the git merge command with the --allow-unrelated-histories flag. For example, if you want to merge the "feature-branch" into the current branch, you can use the command
+
+git merge feature-branch --allow-unrelated-histories.
+Resolve any conflicts that arise during the merge.
+
+Commit the changes with a meaningful commit message, using the
+
+git commit
+command.
+
+Push the changes to the remote repository using the
+
+git push
+command.
+
+Note that merging unrelated histories can have implications on the stability and quality of your codebase, so it's important to thoroughly review and test the changes before merging them. Additionally, it's recommended to avoid merging unrelated histories whenever possible and instead try to rebase or refactor the code to share a common commit history.
+
+next
+To merge two branches (default and other branch that you created manualy) and dont have related commits history.
+
+git merge -X theirs master --allow-unrelated-histories
