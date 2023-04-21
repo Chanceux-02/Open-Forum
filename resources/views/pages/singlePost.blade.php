@@ -62,11 +62,13 @@
                         <p>{{$comments->content}}</p>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <p class="text-black-50 fw-light px-2 vote-count2-{{$comments->comment_id}}" id="vote-count2-{{$comments->comment_id}}">{{$voted}}</p>
-
-                            @if($comments->comment_id == $comments->comment_id)
-                                <p class="text-black-50 fw-light px-2 vote-count-1" id="vote-count-a{{$comments->comment_id}}"> </p>
-                            @endif
+                        <p class="text-black-50 fw-light px-2 comment-count2 comment-count2-{{$comments->comment_id}}"></p>
+                            @foreach($votes as $vote)
+                                @if($vote->comment_id === $comments->comment_id) 
+                                    <p class="text-black-50 fw-light px-2 comment-count-1 comment-count-{{$vote->comment_id}}"> {{$vote->vote}} </p>
+                                    {{-- {{print_r($vote)}} --}}
+                                @endif
+                            @endforeach 
 
                         <form action="{{ route('like-comment') }}" method="POST" class="vote-form me-3">
                             @csrf
@@ -101,15 +103,6 @@
         $(testing).addClass('helpful2');
     });
 
-    // let voted = {!! json_encode($voted) !!};
-    // voted.forEach(function(item) {
-    //     let voteId = item.voted_id;
-    //     let clss = '#helpful2a-' + voteId;
-    //     $(clss).removeClass('helpful');
-    //     $(clss).addClass('helpful2');
-    // });
-
-     
 </script>
 @include('partials._footer')
 
