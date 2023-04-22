@@ -10,4 +10,5 @@ class comment_vote extends Model
     use HasFactory;
 
     protected $table = 'comment_vote';
+    protected $primaryKey = 'vote_id';
 }
