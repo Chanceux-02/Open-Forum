@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Like;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,6 +36,11 @@ class GetUserController extends Controller
       $usersData = Post::findOrFail($id);
       // dd($usersData);
       return view('pages.editPost', ['postData' => $usersData])->with(['title' => $title]);
+    }
+    public function editCom($id){
+      $title = 'Edit Comment';
+      $com = Comment::findOrFail($id);
+      return view('pages.editCom', ['comData' => $com])->with(['title' => $title]);
     }
 
     //http get with some queries

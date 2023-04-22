@@ -148,4 +148,19 @@ class PostController extends Controller
         $comment_votes_count = Comment_vote::where('comment_id', $commentID)->count();
         return response()->json(['success' => true, 'comment_count' => $comment_votes_count]);
     }
+
+    public function destroyCom($id){
+        $com = Comment::findOrFail($id);
+        dd($com);
+        $com->delete();
+        return redirect('/home')->with(['message' => "Deleted Successful!"]);
+    }   
+    public function editCom(Request $req){
+        $comment = $req->input('com');
+        $id = $req->input('id');
+        $com = Comment::findOrFail($id);
+        $com->content = $comment;
+        $com->update();
+        return redirect('/home')->with(['message' => "Edit comment Successful!"]);
+    }   
 }

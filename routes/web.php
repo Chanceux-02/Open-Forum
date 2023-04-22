@@ -54,14 +54,18 @@ Route::get('/edit/profile', [GetUserController::class, 'edit'])->name('edit-prof
 Route::get('/edit/post/{id}', [GetUserController::class, 'editPost'])->name('edit-post');
 Route::get('/delete/post/{id}', [GetUserController::class, 'destroy'])->name('delete-post');
 Route::get('/show/comment/{id}', [GetUserController::class, 'comment'])->name('comment-post');
+Route::get('/edit/comment/{id}', [GetUserController::class, 'editCom'])->name('get-edit-com');
 
 Route::post('/register', [UserController::class, 'create']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/upload/post', [PostController::class, 'store']);
 Route::post('/upload/comment/{id}', [PostController::class, 'storeComment'])->name('answer-post');
-Route::put('/update/profile', [UserController::class, 'update']);
-Route::put('/update/post/{id}', [PostController::class, 'updatePost'])->name('update-post');
 Route::post('/like/post', [PostController::class, 'like']);
 Route::post('/like/comment', [PostController::class, 'likeComment'])->name('like-comment');
+Route::post('/delete/comment/{id}', [PostController::class, 'destroyCom'])->name('delete-com');
+
+Route::put('/update/profile', [UserController::class, 'update']);
+Route::put('/update/post/{id}', [PostController::class, 'updatePost'])->name('update-post');
+Route::put('/update/comment', [PostController::class, 'editCom'])->name('update-com');
 

@@ -14,11 +14,16 @@ tapos na ang create and read kag fetch data sa profile sang user
 tapos na ang delete post dala ang image kag mag redirect
 tapos na ang mag like kag mag comment
 tapos na mahimo update sang post
+tapos na mahimo delete function sa comment
+tapos na mahimo edit comment function
 
-mahimo delete function sa comment
-mahimo edit comment function
-ang ma edit lang nga comment is ang nag comment man nga user
-ang display sa post nga comment kay adon kay naka placehodler palang
+* ang ma edit lang nga comment is ang nag comment man nga user
+* ang display sa post nga comment kay adon kay naka placehodler palang
+* ang profile pic sang nag comment kay adon nga dapat each user nga nag comment ang mag gwa
+* dapat ang comment is may name sa babaw para makilala sang ga lantaw kung sino ang user
 
-improve ui
-seed the post, comments and likes in database
+* kada post is dapat may ara man sya nga iya nga comment ang ma display
+  amuna ang kay adon kay sa tanan nga post may isa lang nga ga display
+
+* improve ui
+* seed the post, comments and likes in database
