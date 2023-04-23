@@ -54,7 +54,7 @@ Route::get('/edit/profile', [GetUserController::class, 'edit'])->name('edit-prof
 Route::get('/edit/post/{id}', [GetUserController::class, 'editPost'])->name('edit-post');
 Route::get('/delete/post/{id}', [GetUserController::class, 'destroy'])->name('delete-post');
 Route::get('/show/comment/{id}', [GetUserController::class, 'comment'])->name('comment-post');
-Route::get('/edit/comment/{id}', [GetUserController::class, 'editCom'])->name('get-edit-com');
+Route::get('/edit/comment/{id}/{postId}', [GetUserController::class, 'editCom'])->name('get-edit-com');
 
 Route::post('/register', [UserController::class, 'create']);
 Route::post('/login', [UserController::class, 'login']);

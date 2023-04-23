@@ -16,14 +16,17 @@ tapos na ang mag like kag mag comment
 tapos na mahimo update sang post
 tapos na mahimo delete function sa comment
 tapos na mahimo edit comment function
-
-* ang ma edit lang nga comment is ang nag comment man nga user
-* ang display sa post nga comment kay adon kay naka placehodler palang
-* ang profile pic sang nag comment kay adon nga dapat each user nga nag comment ang mag gwa
-* dapat ang comment is may name sa babaw para makilala sang ga lantaw kung sino ang user
-
-* kada post is dapat may ara man sya nga iya nga comment ang ma display
+tapos na ang ma edit lang nga comment is ang nag comment man nga user
+tapos na ang profile pic sang nag comment kay adon nga dapat each user nga nag comment ang mag gwa
+tapos na dapat ang comment is may name sa babaw para makilala sang ga lantaw kung sino ang user
+tapos na kada post is dapat may ara man sya nga iya nga comment ang ma display
   amuna ang kay adon kay sa tanan nga post may isa lang nga ga display
+
+
+* ang display sa post nga comment kay adon kay naka placehodler palang
+* ang sa vote nga dapat pag load kung naka like ang user dapat naga blue
 
 * improve ui
 * seed the post, comments and likes in database
+
+;// ang comment count ara sa GetUserController sa index nga function.

@@ -37,10 +37,15 @@ class GetUserController extends Controller
       // dd($usersData);
       return view('pages.editPost', ['postData' => $usersData])->with(['title' => $title]);
     }
-    public function editCom($id){
+    public function editCom($id, $postId){
       $title = 'Edit Comment';
       $com = Comment::findOrFail($id);
-      return view('pages.editCom', ['comData' => $com])->with(['title' => $title]);
+      $postId = Post::findOrFail($postId);
+      $data = [
+        'comData' => $com,
+        'id' => $com
+      ];
+      return view('pages.editCom', $data)->with(['title' => $title]);
     }
 
     //http get with some queries
@@ -76,6 +81,13 @@ class GetUserController extends Controller
         $user = auth()->id();
         $liked =  DB::table('likes')->select('post_id as liked_id')->where('user_id', $user)->get();
         // dd($liked);
+
+        $comment_count = DB::table('comments')
+        ->select('comments.*')->where('comments.post_id', 12)
+        ->count();
+
+        dump($comment_count);
+
 
         $data =[
           'info' => $datas,
@@ -141,7 +153,6 @@ class GetUserController extends Controller
 
     }
     public function comment($id){
-
       $title = 'Post Comments';
 
       $datas = DB::table('users')
@@ -184,10 +195,9 @@ class GetUserController extends Controller
       // $comment = DB::table('comments')->get();
       $comment = DB::table('users')
       ->join('comments','users.user_id', '=', 'comments.user_id')
-      ->select('users.*', 'comments.*')
+      ->join('post', 'comments.post_id', '=', 'post.post_id')
+      ->select('users.*', 'comments.*', 'post.*')->where('post.post_id', $id)
       ->get();
-
-      // dd($comment);
 
       $datas = [
         'info' => $datas,
