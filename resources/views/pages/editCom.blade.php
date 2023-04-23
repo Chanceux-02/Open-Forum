@@ -24,6 +24,7 @@
             @csrf
 
             <input type="hidden" name="id" value="{{$comData->comment_id}}">
+            <input type="hidden" name="postId" value="{{request()->route('postId')}}">
             <div class="mb-3">
                 <label for="comment" class="form-label" class="form-label">Edit comment</label>
                 <input type="text" class="form-control" name="com" id="comment">

@@ -158,9 +158,17 @@ class PostController extends Controller
     public function editCom(Request $req){
         $comment = $req->input('com');
         $id = $req->input('id');
+        $postID = $req->input('postId');
         $com = Comment::findOrFail($id);
+        $user_id = auth()->id();
+        $comID = $com->user_id;
         $com->content = $comment;
+        
+        if($comID !== $user_id){
+            $com = "";
+            return redirect('/show/comment/'.$postID)->with(['message' => "Edit comment failed!"]);
+        }
         $com->update();
-        return redirect('/home')->with(['message' => "Edit comment Successful!"]);
+        return redirect('/show/comment/'.$postID)->with(['message' => "Edit comment Successful!"]);
     }   
 }

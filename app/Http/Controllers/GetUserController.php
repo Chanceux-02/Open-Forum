@@ -37,10 +37,15 @@ class GetUserController extends Controller
       // dd($usersData);
       return view('pages.editPost', ['postData' => $usersData])->with(['title' => $title]);
     }
-    public function editCom($id){
+    public function editCom($id, $postId){
       $title = 'Edit Comment';
       $com = Comment::findOrFail($id);
-      return view('pages.editCom', ['comData' => $com])->with(['title' => $title]);
+      $postId = Post::findOrFail($postId);
+      $data = [
+        'comData' => $com,
+        'id' => $com
+      ];
+      return view('pages.editCom', $data)->with(['title' => $title]);
     }
 
     //http get with some queries
@@ -77,14 +82,20 @@ class GetUserController extends Controller
         $liked =  DB::table('likes')->select('post_id as liked_id')->where('user_id', $user)->get();
         // dd($liked);
 
+        $comment_counts = DB::table('post')
+        ->leftJoin('comments', 'post.post_id', '=', 'comments.post_id')
+        ->select('post.post_id', DB::raw('COUNT(comments.comment_id) AS comment_count'))
+        ->groupBy('post.post_id')
+        ->get();
+
         $data =[
           'info' => $datas,
           'title' => $title,
           'like' => $likes,
-          'liked' => $liked
+          'liked' => $liked,
+          'answers' => $comment_counts
         ];
 
-        // dd($data);
       return view('index', $data);
    }
 
@@ -92,11 +103,8 @@ class GetUserController extends Controller
 
         $title = 'User Profile';
         $user = auth()->id();
-        // $user = DB::table('users')->where('id', $id)->firstOrFail();
-        // Eloquent ORM vs. query builder.
 
         $users = User::findOrFail($user);
-        // $dataP = $users->post;
         $dataP = DB::table('post')
         ->WHERE('user_id', $users->user_id)
         ->orderByDesc('created_at')
@@ -111,11 +119,20 @@ class GetUserController extends Controller
         ->select('post.*', DB::raw('COUNT(likes.like_id) AS likes_count'))
         ->get();
 
+        
+        $comment_counts = DB::table('post')
+        ->leftJoin('comments', 'post.post_id', '=', 'comments.post_id')
+        ->select('post.post_id', DB::raw('COUNT(comments.comment_id) AS comment_count'))
+        ->groupBy('post.post_id')
+        ->get();
+
         $datas = [
           'user' => $users,
           'data' => $dataP,
           'like' => $likes,
-          'liked' => $liked
+          'liked' => $liked,
+          'answers' => $comment_counts
+
         ];
 
         return view('pages.userProfile', $datas)->with(['title' => $title]);
@@ -141,7 +158,6 @@ class GetUserController extends Controller
 
     }
     public function comment($id){
-
       $title = 'Post Comments';
 
       $datas = DB::table('users')
@@ -156,12 +172,6 @@ class GetUserController extends Controller
       ->select('post.*', DB::raw('COUNT(likes.like_id) AS likes_count'))
       ->get();
 
-      // $votes = DB::table('comments')
-      // ->leftJoin('comment_vote', 'comment_vote.comment_id', '=', 'comments.comment_id')
-      // ->groupBy( 'comments.post_id', 'comments.user_id', 'comments.content', 'comments.comment_id', 'comments.updated_at', 'comments.created_at',
-      //   'comment_vote.post_id' ,'comment_vote.comment_id', 'comment_vote.vote_id', 'comment_vote.user_id', 'comment_vote.updated_at', 'comment_vote.created_at')
-      // ->select('comments.*', DB::raw('COUNT(comment_vote.vote_id) AS com_count'))
-      // ->get();
 
       $votes = DB::table('comments')
       ->leftJoin('comment_vote', 'comments.comment_id', '=', 'comment_vote.comment_id')
@@ -171,11 +181,11 @@ class GetUserController extends Controller
 
 
 
-      // foreach ($votes as $test) {
-      //     print_r($test);
-      // }
-
-      // return;
+      $comment_counts = DB::table('post')
+      ->leftJoin('comments', 'post.post_id', '=', 'comments.post_id')
+      ->select('post.post_id', DB::raw('COUNT(comments.comment_id) AS comment_count'))
+      ->groupBy('post.post_id')
+      ->get();
 
       $user = auth()->id();
       $liked =  DB::table('likes')->select('post_id as liked_id')->where('user_id', $user)->get();
@@ -184,17 +194,17 @@ class GetUserController extends Controller
       // $comment = DB::table('comments')->get();
       $comment = DB::table('users')
       ->join('comments','users.user_id', '=', 'comments.user_id')
-      ->select('users.*', 'comments.*')
+      ->join('post', 'comments.post_id', '=', 'post.post_id')
+      ->select('users.*', 'comments.*', 'post.*')->where('post.post_id', $id)
       ->get();
-
-      // dd($comment);
 
       $datas = [
         'info' => $datas,
         'like' => $likes,
         'liked' => $liked,
         'votes' => $votes,
-        'comment' => $comment
+        'comment' => $comment,
+        'answers' => $comment_counts
       ];
 
       return view('pages.singlePost', $datas)->with(['title'=> $title]);

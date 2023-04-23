@@ -45,7 +45,11 @@
                         </form>     
                        {{-- sa comment na ni --}}
                         {{-- islan answers --}}
-                        <p class="text-black-50 fw-light px-2"> 5 </p>
+                        @foreach ($answers as $answer)
+                            @if($answer->post_id == $datas->post_id)
+                                <p class="text-black-50 fw-light px-2"> {{$answer->comment_count}} </p>
+                            @endif
+                        @endforeach                        
                         <a href="{{route('comment-post',['id' => $datas->post_id])}}" class="text-muted" style="text-decoration: none;">Answers</a>       
                         {{-- <button type="submit" class="text-muted" style="background-color: transparent; border: none;">Answers</button>   --}}
                     </div>
@@ -58,9 +62,13 @@
             <div class="px-3 pb-3 d-flex flex-column sigle-post-mobile">
                 @foreach ($comment as $comments)
                 <div class="d-flex justify-content-between">
-                    <div class="d-flex">
-                        <img src="{{ Storage::url('user/profile-pics/'.$comments->profile_pic)}}" alt=":)" class="profile-image-size rounded-circle me-3">
-                        <p>{{$comments->content}}</p>
+                    <div class="d-flex flex-column">
+                        <div class="d-flex">
+                            <img src="{{ Storage::url('user/profile-pics/'.$comments->profile_pic)}}" alt=":)" class="profile-image-size rounded-circle me-3">
+                            <p class="text-black-50"">{{$comments->first_name . " ". $comments->last_name}}</p>
+                        </div>
+
+                        <p class="ps-5 ms-3 pt-3">{{$comments->content}}</p>
                     </div>
                     {{-- comment option --}}
                     <div class="pe-3">
@@ -69,8 +77,8 @@
                                 <i class="fa-solid fa-ellipsis fa-lg"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li> 
-                                    <a href="{{route('get-edit-com', ['id' => $comments->comment_id])}}" class="dropdown-item">Edit</a>
+                                <li>
+                                    <a href="{{route('get-edit-com', ['id' => $comments->comment_id, 'postId' => request()->route('id')])}}" class="dropdown-item">Edit</a>
                                 </li>
                                 <li> 
                                     <form action="{{ route('delete-com', ['id' => $comments->comment_id]) }}" method="POST" class="dropdown-item">
