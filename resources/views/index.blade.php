@@ -58,7 +58,11 @@
                             </form>     
                            {{-- sa comment na ni --}}
                             {{-- islan answers --}}
-                            <p class="text-black-50 fw-light px-2"> 5 </p>
+                            @foreach ($answers as $answer)
+                                @if($answer->post_id == $datas->post_id)
+                                  <p class="text-black-50 fw-light px-2"> {{$answer->comment_count}} </p>
+                                @endif
+                            @endforeach
                             <a href="{{route('comment-post',['id' => $datas->post_id])}}" class="text-muted" style="text-decoration: none;">Answers</a>       
                             {{-- <button type="submit" class="text-muted" style="background-color: transparent; border: none;">Answers</button>   --}}
                         </div>
