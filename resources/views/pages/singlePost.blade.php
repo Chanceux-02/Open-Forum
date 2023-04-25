@@ -134,6 +134,14 @@
         $(testing).addClass('helpful2');
     });
 
+    let voted = {!! json_encode($voted) !!};
+    voted.forEach(function(item) {
+        let voteid = item.voted_id;
+        let voteBtn = '#vote2a-' + voteid;
+        $(voteBtn).removeClass('helpful');
+        $(voteBtn).addClass('helpful2');
+    });
+
 </script>
 @include('partials._footer')
 
