@@ -23,8 +23,8 @@ tapos na kada post is dapat may ara man sya nga iya nga comment ang ma display
   amuna ang kay adon kay sa tanan nga post may isa lang nga ga display
 tapos na ang display sa post nga comment kay adon kay naka placehodler palang
 tapos na ang sa vote nga dapat pag load kung naka like ang user dapat naga blue
+tapos na search filter
 
-*search filter
 
 * improve ui
 * seed the post, comments and likes in database
