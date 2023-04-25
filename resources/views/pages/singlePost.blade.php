@@ -61,37 +61,37 @@
             <hr>
             <div class="px-3 pb-3 d-flex flex-column sigle-post-mobile">
                 @foreach ($comment as $comments)
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-column">
-                        <div class="d-flex">
-                            <img src="{{ Storage::url('user/profile-pics/'.$comments->profile_pic)}}" alt=":)" class="profile-image-size rounded-circle me-3">
-                            <p class="text-black-50"">{{$comments->first_name . " ". $comments->last_name}}</p>
-                        </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-column">
+                            <div class="d-flex">
+                                <img src="{{ Storage::url('user/profile-pics/'.$comments->profile_pic)}}" alt=":)" class="profile-image-size rounded-circle me-3">
+                                <p class="text-black-50"">{{$comments->first_name . " ". $comments->last_name}}</p>
+                            </div>
 
-                        <p class="ps-5 ms-3 pt-3">{{$comments->content}}</p>
-                    </div>
-                    {{-- comment option --}}
-                    <div class="pe-3">
-                        <div class="dropdown d-flex justify-content-end">
-                            <a class="mb-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-ellipsis fa-lg"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="{{route('get-edit-com', ['id' => $comments->comment_id, 'postId' => request()->route('id')])}}" class="dropdown-item">Edit</a>
-                                </li>
-                                <li> 
-                                    <form action="{{ route('delete-com', ['id' => $comments->comment_id]) }}" method="POST" class="dropdown-item">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item" style="background-color: transparent; border: none;">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
+                            <p class="ps-5 ms-3 pt-3">{{$comments->content}}</p>
+                        </div>
+                        {{-- comment option --}}
+                        <div class="pe-3">
+                            <div class="dropdown d-flex justify-content-end">
+                                <a class="mb-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-ellipsis fa-lg"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{route('get-edit-com', ['id' => $comments->comment_id, 'postId' => request()->route('id')])}}" class="dropdown-item">Edit</a>
+                                    </li>
+                                    <li> 
+                                        <form action="{{ route('delete-com', ['id' => $comments->comment_id]) }}" method="POST" class="dropdown-item">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item" style="background-color: transparent; border: none;">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
                     <div class="d-flex justify-content-end">
                         <p class="text-black-50 fw-light px-2 comment-count2 comment-count2-{{$comments->comment_id}}"></p>
                             @foreach($votes as $vote)
@@ -132,6 +132,14 @@
         let testing = '#helpful2a-' + postid;
         $(testing).removeClass('helpful');
         $(testing).addClass('helpful2');
+    });
+
+    let voted = {!! json_encode($voted) !!};
+    voted.forEach(function(item) {
+        let voteid = item.voted_id;
+        let voteBtn = '#vote2a-' + voteid;
+        $(voteBtn).removeClass('helpful');
+        $(voteBtn).addClass('helpful2');
     });
 
 </script>
