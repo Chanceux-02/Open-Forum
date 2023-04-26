@@ -27,7 +27,6 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item active" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form action="/logout" method="post">
@@ -63,7 +62,7 @@
             </div>
             </div>
             <div class="text-center bio">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti provident esse quaerat, nihil, id quasi sit incidunt excepturi sequi accusantium cupiditate, ipsum asperiores rem magni exercitationem laboriosam. Harum, ducimus rem.</p>
+                <p>{{$user->bio}}</p>
             </div>
         </section>
        <hr>

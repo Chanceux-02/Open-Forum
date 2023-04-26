@@ -36,6 +36,10 @@
                 <input type="file" name="profilePic" class="form-control" id="profilepic1">
             </div>
             <div class="mb-3">
+                <label for="bio" class="form-label">Bio</label>
+                <textarea type="text" name="bio" class="form-control" value="{{$userData->bio}}" id="bio" cols="30" rows="10">{{$userData->bio}}</textarea>
+            </div>
+            <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="{{$userData->email}}" aria-describedby="emailHelp">
                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>

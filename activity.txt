@@ -25,6 +25,6 @@ tapos na ang display sa post nga comment kay adon kay naka placehodler palang
 tapos na ang sa vote nga dapat pag load kung naka like ang user dapat naga blue
 tapos na search filter
 
-
+* edit bio
 * improve ui
 * seed the post, comments and likes in database

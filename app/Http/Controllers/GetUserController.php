@@ -207,7 +207,6 @@ class GetUserController extends Controller
       ];
 
       return view('pages.singlePost', $datas)->with(['title'=> $title]);
-
     }
 
     public function search(Request $req){

@@ -94,6 +94,7 @@ class UserController extends Controller
         $newFile = $request->file('profilePic');
         $first_name = $request->input('first_name');
         $last_name = $request->input('last_name');
+        $bio = $request->input('bio');
         $email = $request->input('email');
         $password = $request->input('password');
         $hashed_fileName = $newFile->hashName();
@@ -110,6 +111,7 @@ class UserController extends Controller
 
         $user->first_name = $first_name;
         $user->last_name = $last_name;
+        $user->bio = $bio;
         $user->email = $email;
         $user->password = bcrypt($password);
         $user->profile_pic = $fileToStore;
