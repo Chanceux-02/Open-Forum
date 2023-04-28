@@ -84,11 +84,8 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
-        // dd($request);
         $file = $request->hasFile('profilePic');
-        // dd($file);
         if(!$file){
-            // dd('$file');
         }
 
         $newFile = $request->file('profilePic');

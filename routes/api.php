@@ -27,6 +27,10 @@ Route::get('/test', [ApiGetUserController::class, 'test']);
 
 Route::post('/delete/{id}', [ApiPostController::class, 'destroyCom']);
 
-Route::post('/register', [ApiUserController::class, 'register']); //200 ok pero wala naga sulod ang inputs
+//authentication
+Route::post('/register', [ApiUserController::class, 'register']);
+Route::put('/update', [ApiUserController::class, 'update']);
+Route::post('/login', [ApiUserController::class, 'login']);
+Route::post('/logout', [ApiUserController::class, 'logout']);
 
 

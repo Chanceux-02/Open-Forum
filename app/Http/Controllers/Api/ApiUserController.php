@@ -61,11 +61,11 @@ class ApiUserController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (!auth()->attempt($credentials)) {
-            return back()->withErrors(['email' => 'Login Failed'])->onlyInput('email');
+            return response()->json(['message' => "log in failed!"], 400);
         }
 
         $request->session()->regenerate();
-        return redirect('/home')->with('message', 'Login successful!');
+        return response()->json(['message' => "logged in Successful!"], 200);
     }
 
     public function logout(Request $request){
@@ -73,15 +73,12 @@ class ApiUserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('message', 'Logout successful');
+        return response()->json(['message' => "logged out Successful!"], 200);
     }
 
     public function update(Request $request){
-        // dd($request);
         $file = $request->hasFile('profilePic');
-        // dd($file);
         if(!$file){
-            // dd('$file');
         }
 
         $newFile = $request->file('profilePic');
@@ -113,11 +110,11 @@ class ApiUserController extends Controller
 
         if(!Storage::exists($locatDelete)){
             $user->update();
-            return redirect('/user/profile')->with('message', 'Profile updated Successfuly!');
+            return response()->json(['message' => "Profile updated Successfuly!"], 200);
         }
 
         Storage::delete($locatDelete);
         $user->update();
-        return redirect('/user/profile')->with('message', 'Profile updated Successfuly!');
+        return response()->json(['message' => "Profile updated Successfuly!"], 200);
     }
 }
