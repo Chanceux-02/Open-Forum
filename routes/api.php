@@ -20,13 +20,26 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-// Route::namespace('Api')->group(function () {
-// });
+Route::namespace('Api')->group(function () {
 
-Route::get('/test', [ApiGetUserController::class, 'test']);
+    // Route::get('/test', [ApiGetUserController::class, 'test']);
+    Route::get('/home', [ApiGetUserController::class, 'index']);
+    Route::get('/get/user/profile/{id}', [ApiGetUserController::class, 'profile']);
+    Route::get('/get/profile/{id}', [ApiGetUserController::class, 'edit']);
+    Route::get('/get/post/{id}', [ApiGetUserController::class, 'editPost']);
+    Route::get('/show/comment/{id}', [ApiGetUserController::class, 'comment']);
+    Route::get('/get/comment/{id}', [ApiGetUserController::class, 'editCom']);
+    
+    Route::get('/search/{id}', [ApiGetUserController::class, 'search']);
+    
+    Route::post('/register', [ApiUserController::class, 'register']);
+    Route::post('/update/{id}', [ApiUserController::class, 'update']);
+    
+    Route::delete('/delete/post/{id}', [ApiGetUserController::class, 'destroy']);
+    Route::delete('/delete/{id}', [ApiPostController::class, 'destroyCom']);
+    
+});
 
-Route::post('/delete/{id}', [ApiPostController::class, 'destroyCom']);
 
-Route::post('/register', [ApiUserController::class, 'register']); //200 ok pero wala naga sulod ang inputs
 
 
