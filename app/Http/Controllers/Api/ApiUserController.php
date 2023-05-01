@@ -76,11 +76,15 @@ class ApiUserController extends Controller
         return response()->json(['message' => "logged out Successful!"], 200);
     }
 
-    public function update(Request $request){
-        $file = $request->hasFile('profilePic');
-        if(!$file){
-        }
 
+    public function update(Request $request, $id){
+        $file = $request->hasFile('profilePic');
+        // $first_name = $request->input('first_name');
+        // dd($file);
+        if(!$file){
+            // dd($file);
+        }
+        
         $newFile = $request->file('profilePic');
         $first_name = $request->input('first_name');
         $last_name = $request->input('last_name');
@@ -94,7 +98,8 @@ class ApiUserController extends Controller
         $fileToStore = 'user.'.$rmvSpaces.'.'.$hashed_fileName;
         $newFile->storeAs('public/user/profile-pics', $fileToStore);
 
-        $userId = auth()->id();
+        // $userId = auth()->id();
+        $userId = $id;
         $user = User::findOrFail($userId);
         $userProfilePic = $user->profile_pic;
 
