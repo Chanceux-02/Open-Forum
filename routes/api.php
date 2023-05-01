@@ -24,19 +24,27 @@ Route::namespace('Api')->group(function () {
 
     // Route::get('/test', [ApiGetUserController::class, 'test']);
     Route::get('/home', [ApiGetUserController::class, 'index']);
-    Route::get('/get/user/profile/{id}', [ApiGetUserController::class, 'profile']);
-    Route::get('/get/profile/{id}', [ApiGetUserController::class, 'edit']);
+    Route::get('/get/user/profile/{id}', [ApiGetUserController::class, 'getProfile']);
+    Route::get('/get/edit/profile/{id}', [ApiGetUserController::class, 'editProfile']);
     Route::get('/get/post/{id}', [ApiGetUserController::class, 'editPost']);
-    Route::get('/show/comment/{id}', [ApiGetUserController::class, 'comment']);
+    Route::get('/get/comment/{id}', [ApiGetUserController::class, 'comment']);
     Route::get('/get/comment/{id}', [ApiGetUserController::class, 'editCom']);
-    
     Route::get('/search/{id}', [ApiGetUserController::class, 'search']);
-    
-    Route::post('/register', [ApiUserController::class, 'register']);
+
     Route::post('/update/{id}', [ApiUserController::class, 'update']);
+    Route::post('/register', [ApiUserController::class, 'register']);
+    Route::post('/logout', [ApiUserController::class, 'logout']);
+    Route::post('/login', [ApiUserController::class, 'login']);
     
-    Route::delete('/delete/post/{id}', [ApiGetUserController::class, 'destroy']);
-    Route::delete('/delete/{id}', [ApiPostController::class, 'destroyCom']);
+    Route::post('/update/post/{uid}/{pid}', [ApiPostController::class, 'updatePost']);
+    Route::post('/store/post/{uid}', [ApiPostController::class, 'store']);
+    Route::post('/like/post/{uid}/{pid}', [ApiPostController::class, 'like']);
+    Route::post('/store/comment/{uid}/{pid}', [ApiPostController::class, 'storeComment']);
+    Route::post('/like/comment/{uid}', [ApiPostController::class, 'likeComment']);
+    Route::post('/edit/comment/{uid}', [ApiPostController::class, 'editCom']);
+    
+    Route::delete('/delete/post/{id}', [ApiPostController::class, 'destroy']);
+    Route::delete('/delete/comment/{id}', [ApiPostController::class, 'destroyCom']);
     
 });
 

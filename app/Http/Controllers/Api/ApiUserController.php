@@ -72,8 +72,8 @@ class ApiUserController extends Controller
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        return response()->json(['message' => "Logout successful!"], 200);
 
-        return redirect('/')->with('message', 'Logout successful');
     }
 
     public function update(Request $request, $id){
@@ -121,4 +121,6 @@ class ApiUserController extends Controller
         $user->update();
         return response()->json(['message' => "Profile updated Successfuly!"], 200);
     }
+
+    
 }
