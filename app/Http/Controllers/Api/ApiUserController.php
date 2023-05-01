@@ -61,11 +61,11 @@ class ApiUserController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (!auth()->attempt($credentials)) {
-            return back()->withErrors(['email' => 'Login Failed'])->onlyInput('email');
+            return response()->json(['message' => "Login Failed!"], 400);
         }
 
         $request->session()->regenerate();
-        return redirect('/home')->with('message', 'Login successful!');
+        return response()->json(['message' => "Login successful!"], 200);
     }
 
     public function logout(Request $request){

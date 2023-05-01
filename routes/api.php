@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::group(['middleware' => ['api']], function () {
+    Route::post('/logout', [ApiUserController::class, 'logout']);
+    Route::post('/login', [ApiUserController::class, 'login']); // got a 419 status error
+});
 Route::namespace('Api')->group(function () {
 
     // Route::get('/test', [ApiGetUserController::class, 'test']);
@@ -33,8 +37,6 @@ Route::namespace('Api')->group(function () {
 
     Route::post('/update/{id}', [ApiUserController::class, 'update']);
     Route::post('/register', [ApiUserController::class, 'register']);
-    Route::post('/logout', [ApiUserController::class, 'logout']);
-    Route::post('/login', [ApiUserController::class, 'login']);
     
     Route::post('/update/post/{uid}/{pid}', [ApiPostController::class, 'updatePost']);
     Route::post('/store/post/{uid}', [ApiPostController::class, 'store']);
