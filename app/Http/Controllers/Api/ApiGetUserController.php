@@ -67,7 +67,7 @@ class ApiGetUserController extends Controller
           return response()->json($data, 200);
      }
 
-     public function profile($id){
+     public function getProfile($id){
 
         $title = 'User Profile';
         // $user = auth()->id();
@@ -109,7 +109,7 @@ class ApiGetUserController extends Controller
         return response()->json($datas, 200);
     }
 
-    public function edit($id){
+    public function editProfile($id){
         $title = 'Edit Profile';
         // $user = auth()->id();
         $usersData = User::findOrFail($id);
@@ -132,24 +132,6 @@ class ApiGetUserController extends Controller
         ];
         return response()->json($datas, 200);      
     }
-
-    public function destroy($id){
-
-        $post = Post::findOrFail($id);
-        $imgPostPath = $post->image_name;
-        $user = auth()->id();
-        $delImage = 'public/post/images/'. $imgPostPath;
-  
-        if(!Storage::exists($delImage)){
-          Storage::delete($delImage);
-          $post->delete();
-          return response()->json(['message' => "Error!"], 200);
-        }
-        
-        $post->delete();
-        return response()->json(['message' => "Deleted Successful!"], 200);
-  
-      }
 
       public function comment($id){
         $title = 'Post Comments';

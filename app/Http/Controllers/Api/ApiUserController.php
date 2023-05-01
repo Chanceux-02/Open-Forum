@@ -61,19 +61,31 @@ class ApiUserController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (!auth()->attempt($credentials)) {
+<<<<<<< HEAD
             return response()->json(['message' => "log in failed!"], 400);
         }
 
         $request->session()->regenerate();
         return response()->json(['message' => "logged in Successful!"], 200);
+=======
+            return response()->json(['message' => "Login Failed!"], 400);
+        }
+
+        $request->session()->regenerate();
+        return response()->json(['message' => "Login successful!"], 200);
+>>>>>>> master
     }
 
     public function logout(Request $request){
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        return response()->json(['message' => "Logout successful!"], 200);
 
+<<<<<<< HEAD
         return response()->json(['message' => "logged out Successful!"], 200);
+=======
+>>>>>>> master
     }
 
 
@@ -122,4 +134,6 @@ class ApiUserController extends Controller
         $user->update();
         return response()->json(['message' => "Profile updated Successfuly!"], 200);
     }
+
+    
 }
